@@ -5,7 +5,7 @@ import cvzone
 import numpy as np
 import pytesseract
 import os
-from tracker1 import*
+from tracker import*
 
 model=YOLO('best.pt')
 
