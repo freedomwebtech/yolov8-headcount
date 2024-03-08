@@ -3,7 +3,6 @@ import pandas as pd
 from ultralytics import YOLO
 import cvzone
 import numpy as np
-import pytesseract
 import os
 from tracker import*
 
@@ -34,9 +33,6 @@ class_list = data.split("\n")
 #print(class_list)
 
 count=0
-area=[(1,284),(4,320),(1016,335),(1018,286)]
-area1=[(1,235),(1,255),(1018,258),(1018,238)]
-
 
 tracker=Tracker()
 up={}
@@ -85,7 +81,7 @@ while True:
            up[id]=cx,cy
         if id in up:
            if cy1<(cy+offset) and cy1>(cy-offset): 
-              cv2.circle(frame,(x3,y4),4,(255,0,0),-1)
+              cv2.circle(frame,(cx,cy),4,(255,0,0),-1)
               cv2.rectangle(frame,(x3,y3),(x4,y4),(0,255,0),2)
               cvzone.putTextRect(frame,f'{id}',(x3,y3),1,1)
               if counterup.count(id)==0:
@@ -95,7 +91,7 @@ while True:
            down[id]=cx,cy
         if id in down:
            if cy2<(cy+offset) and cy2>(cy-offset): 
-              cv2.circle(frame,(x3,y4),4,(255,0,0),-1)
+              cv2.circle(frame,(cx,cy),4,(255,0,0),-1)
               cv2.rectangle(frame,(x3,y3),(x4,y4),(0,255,0),2)
               cvzone.putTextRect(frame,f'{id}',(x3,y3),1,1)
               if counterdown.count(id)==0:
